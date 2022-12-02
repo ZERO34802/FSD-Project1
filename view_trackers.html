@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if log|length != 0 %}
+{% if tracker.input_type == "Multiple entries" or tracker.input_type == "Numerical"%}
+{% endif %}
+
+
+<div class="centered_block">
+    <table>
+        <tr>
+            <th><div class="text">Date</div></th>
+            <th><div class="text">Value</div></th>
+            <th><div class="text">Details</div></th>
+            <th><div class="text">Operations</div></th>
+        </tr>
+        {% for log in logs %}
+        <tr>
+            <td><div class="text">{{log.date}}</div></td>
+            <td><div class="text">{{log.value}}</div></td>
+            <td><div class="text">{{log.details}}</div></td>
+            <td><div class="text"><a href="/tracker/{{track_id}}/logs/{{log.id}}">Edit</a></div></td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="/trackers/{{tracker_id}}/records/add"><div id="box" class="test">Add</div></a>
+</div>
+{% else %}
+<div class="text">Data Unavailable</div>
+<a href="/trackers/{{tracker_id}}/records/add"><div class="test">Add a new log </div></a>
+{% endif %}
+
+{% endblock %}

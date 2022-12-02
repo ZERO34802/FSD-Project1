@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+   <div class="aj">
+    <div class="text  nm">Hello, {{session.get('username')}}</div>
+    <style>
+        .nm{
+            color: #273746;
+            font-size: larger;
+            font-weight: bold;
+        }
+    </style>
+    <div class="centered_block">
+        <table>
+            <tr>
+                <th><div class="text">Name</div></th>
+                <th><div class="text">Last entry</div></th>
+                <th><div class="text">New Event</div></th>
+                <th><div class="text">Actions</div></th>
+            </tr>
+        {% for tracker in trackers %}
+            <tr>
+                <td><div class="text"><a href="/trackers/{{track.id}}/view">{{track.name}}</a></div></td>
+                <td><div class="text">yesterday</div></td>
+                <td><div class="text"><a href="/trackers/{{track.id}}/records/add">+</a></div></td>
+
+                <td><div class="text"><a href="/trackers/{{track.id}}/edit">Edit</a></div>
+                    <div class="text"><a href="/trackers/{{track.id}}/delete">Delete</a></div></td>
+            </tr>
+        {% endfor %}
+        </table>
+        
+        <a href="/trackers/add"><div id="box" class="test">Add</div></a>
+    </div>
+    </div>
+{% endblock %}

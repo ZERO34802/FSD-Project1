@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{title}}</title>
+        <link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}">
+    </head>
+    <body>
+        <div class="aj">
+        <div id="header">
+            <div id="title">
+                <div class="text m" ><a href='{{url_for("home")}}'> <b>Quantified Self</b></a></div>
+            </div>
+            <style>
+                b{
+                    color: #273746;
+                    font-size: x-large;
+
+                }
+            </style>
+            <div id="to_right">
+                {% if 'logged_in' not in session%}
+                <a href="{{url_for('login')}}"><div id="box" class="ll" class="text"><b>Login</b></div></a>
+                <a href="{{url_for('register')}}"><div id="box" class="ll" class="text"><b>Register</b></div></a>
+                {% else %}
+                <a href="{{url_for('logout')}}"><div id="box" class="ll" class="test"><b>Logout</b></div></a>
+                {% endif %}
+                <style>
+                    
+                </style>
+            </div>
+        </div>
+        {% block content %}
+        {% endblock %}
+        <div class="flashed">
+           
+            {% with messages = get_flashed_messages() %}  
+            {% if messages %}  
+                  {% for message in messages %}  
+                       <div class="text">{{ message }}</p></div> 
+                  {% endfor %}  
+            {% endif %}  
+            {% endwith %} 
+        </div> 
+    </div>
+    </body>
+    <style>
+        body{
+            background-image: url(https://images.unsplash.com/photo-1532153354457-5fbe1a3bb0b4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mjh8fHBhZ2VzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60);
+        
+        }
+
+    </style>
+</html>
